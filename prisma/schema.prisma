@@ -1,0 +1,29 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum studentClass {
+  TURMA_A
+  TURMA_B
+  TURMA_C
+  TURMA_D
+}
+
+model Student {
+  id           Int          @id @default(autoincrement())
+  name         String
+  lastName     String
+  grade1       Float
+  grade2       Float
+  studentClass studentClass
+
+  @@map("students")
+}
